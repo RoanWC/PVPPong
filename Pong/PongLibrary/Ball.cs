@@ -11,49 +11,58 @@ namespace PongLibrary
     
     public class Ball
     {
-        private int ySpeed;
-        private int xSpeed;
+
+        private Vector2 speed;
         private int screenWidth;
         private int screenHeight;
         public Rectangle boundingBall;
-        
 
         public delegate void Handler();
-       
-
+      
         public event Handler GameOver;
         public event scoreIncreaseHandler WallCollision;
 
 
 
-
-        public Ball(int ySpeed, int xSpeed, int screenWidth, int screenHeight, int ballWidth)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="speed">vector containing an x and a y variable to determine the balls speed and direction</param>
+        /// <param name="screenWidth">the width of the screen that the ball is bouncing around in</param>
+        /// <param name="screenHeight">the height of the screen that the ball is bouncing around in</param>
+        /// <param name="ballWidth">the size of the ball to be created</param>
+        public Ball(Vector2 speed, int screenWidth, int screenHeight, int ballWidth)
         {
-            this.ySpeed = ySpeed;
-            this.xSpeed = xSpeed;
+            this.speed = speed;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             boundingBall = new Rectangle(screenWidth / 2 - ballWidth / 2, 0, ballWidth, ballWidth);
         }
-        
+
+ 
+
+
         /// <summary>
-        /// responsible for raising the game over event
+        /// responsoble for raising the game over event
         /// </summary>
         protected virtual void OnGameOver()
         {
             GameOver?.Invoke();
         }
 
-        protected virtual void OnWallCollision(int points)
-        {
-            WallCollision?.Invoke(points);
-        }
         
+
+        /// <summary>
+        /// responsoble for making the ball bounce off the the paddle
+        /// </summary>
         public void paddleBounce()
         {
             ySpeed = -ySpeed;
         }
 
+        /// <summary>
+        /// responsible for th eballs movement
+        /// </summary>
         public void moveBall()
         {
             if (boundingBall.X > 0 && boundingBall.X + boundingBall.Width < screenWidth)
