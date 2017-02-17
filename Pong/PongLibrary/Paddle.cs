@@ -13,9 +13,14 @@ namespace PongLibrary
         private int screenWidth;
         private Rectangle boundingBox;
         private Ball ball;
-        
-        
 
+      
+        public event scoreIncreaseHandler scoreIncrease;
+
+        protected virtual void onScoreIncrease(int points)
+        {
+            scoreIncrease?.Invoke(points);
+        }
        public Paddle(int paddleWidth, int paddleHeight, int screenWidth, int screenHeight, int speed, Ball ball)
         {
             this.speed = speed;
@@ -23,6 +28,7 @@ namespace PongLibrary
             this.boundingBox = new Rectangle(screenWidth / 2 - paddleWidth / 2, screenHeight - paddleHeight, paddleWidth, paddleHeight);
             this.ball = ball;
         }
+
 
         public Rectangle paddleBox
         {
@@ -55,6 +61,15 @@ namespace PongLibrary
             if(this.boundingBox.X < ball.boundingBall.X)
             {
                 MoveRight();
+            }
+        }
+        public void ballBounce()
+        {
+            if (this.boundingBox.Intersects(ball.boundingBall))
+            {
+                onScoreIncrease(100);
+                ball.paddleBounce();
+
             }
         }
 

@@ -13,10 +13,10 @@ using Microsoft.Xna.Framework.Media;
 
 namespace PongGame
 {
-    class BallSprite : DrawableGameComponent
+    public class BallSprite : DrawableGameComponent
     {
         private Ball ball;
-        private PaddleSprite pad;
+
 
         private SpriteBatch spriteBatch;
         private Texture2D imageBall;
@@ -24,10 +24,18 @@ namespace PongGame
 
         private int threshold;
 
-        public BallSprite(Game1 game,PaddleSprite pad) : base(game)
+        public Ball Ball
+        {
+            get
+            {
+                return ball;
+            }
+        }
+
+
+        public BallSprite(Game1 game) : base(game)
         {
             this.game = game;
-            this.pad = pad;
         }
         public override void Draw(GameTime gameTime)
         {
@@ -46,7 +54,7 @@ namespace PongGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             imageBall = game.Content.Load<Texture2D>("ball");
-            ball = new Ball(threshold, threshold, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, imageBall.Width, pad.paddle);
+            ball = new Ball(threshold, threshold, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, imageBall.Width);
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)

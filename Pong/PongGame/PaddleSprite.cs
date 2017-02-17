@@ -15,24 +15,40 @@ namespace PongGame
 {
     public class PaddleSprite : DrawableGameComponent
     {
-        public Paddle paddle;
+        private Paddle paddle;
         private SpriteBatch spriteBatch;
         private Texture2D imagePaddle;
         private Game1 game;
-        private Ball ball;
+        private BallSprite ball;
+
 
         //keyboard input
         private KeyboardState oldState;
         private int counter;
         private int threshold;
          
-        
+        public Paddle Paddle
+        {
+            get
+            {
+                return paddle;
+            }
+        }
+        public BallSprite Ball
+        {
+            set
+            {
+                ball = value;
+            }
+        }
 
 
 
-        public PaddleSprite(Game1 game) : base(game)
+
+        public PaddleSprite(Game1 game,BallSprite ball) : base(game)
         {
             this.game = game;
+            this.Ball = ball;
         }
         public override void Initialize()
         {
@@ -43,7 +59,7 @@ namespace PongGame
 
         public override void Update(GameTime gameTime)
         {
-
+            paddle.ballBounce();
             checkInput();
             base.Update(gameTime);
         }
@@ -51,7 +67,8 @@ namespace PongGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             imagePaddle = game.Content.Load<Texture2D>("paddle");
-            paddle = new Paddle(imagePaddle.Width, imagePaddle.Height, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, 5, ball);
+            paddle = new Paddle(imagePaddle.Width, imagePaddle.Height, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, 5, ball.Ball);
+            
             base.LoadContent();
         }
         public override void Draw(GameTime gameTime)
@@ -65,7 +82,7 @@ namespace PongGame
         private void checkInput()
         {
             KeyboardState newState = Keyboard.GetState();
-
+            oldState = newState;
             if (newState.IsKeyDown(Keys.Right))
             {
                 if (!oldState.IsKeyDown(Keys.Right))

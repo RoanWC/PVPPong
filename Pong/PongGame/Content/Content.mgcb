@@ -37,3 +37,9 @@
 /processorParam:TextureFormat=Color
 /build:paddle.png
 
+#begin scoreFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:scoreFont.spritefont
+

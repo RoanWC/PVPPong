@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace PongLibrary
 {
+    public delegate void scoreIncreaseHandler(int score);
+    
     public class Ball
     {
         private int ySpeed;
@@ -14,20 +16,43 @@ namespace PongLibrary
         private int screenWidth;
         private int screenHeight;
         public Rectangle boundingBall;
-        private Paddle paddle;
-
         
 
-        public Ball(int ySpeed, int xSpeed, int screenWidth, int screenHeight, int ballWidth, Paddle paddle)
+        public delegate void Handler();
+       
+
+        public event Handler GameOver;
+        public event scoreIncreaseHandler WallCollision;
+
+
+
+
+        public Ball(int ySpeed, int xSpeed, int screenWidth, int screenHeight, int ballWidth)
         {
             this.ySpeed = ySpeed;
             this.xSpeed = xSpeed;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             boundingBall = new Rectangle(screenWidth / 2 - ballWidth / 2, 0, ballWidth, ballWidth);
-            this.paddle = paddle;
+        }
+        
+        /// <summary>
+        /// responsible for raising the game over event
+        /// </summary>
+        protected virtual void OnGameOver()
+        {
+            GameOver?.Invoke();
         }
 
+        protected virtual void OnWallCollision(int points)
+        {
+            WallCollision?.Invoke(points);
+        }
+        
+        public void paddleBounce()
+        {
+            ySpeed = -ySpeed;
+        }
 
         public void moveBall()
         {
@@ -35,25 +60,25 @@ namespace PongLibrary
                 boundingBall.X += xSpeed;
             else
             {
+                OnWallCollision(50);
                 xSpeed = -xSpeed;
                 boundingBall.X += xSpeed;
             }
 
             if (!(boundingBall.Y + ySpeed > 0))
+            {
+                OnWallCollision(50);
                 ySpeed = -ySpeed;
+            }
             boundingBall.Y += ySpeed;
             if (boundingBall.Y + boundingBall.Height > screenHeight)
             {
                 ySpeed = 0;
                 xSpeed = 0;
+                OnGameOver();
             }
-            if (boundingBall.Intersects(paddle.paddleBox))
-                bounceOnPaddle();
         }
-        public void bounceOnPaddle()
-        {
-            ySpeed = -ySpeed;
-        }
+
 
 
     }

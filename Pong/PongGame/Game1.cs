@@ -13,11 +13,17 @@ namespace PongGame
         SpriteBatch spriteBatch;
         private PaddleSprite paddle;
         private BallSprite ball;
+        private ScoreSprite score;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+        }
+
+        private void gameEnded()
+        {
+            Components.Remove(ball);
         }
 
         /// <summary>
@@ -28,12 +34,21 @@ namespace PongGame
         /// </summary>
         protected override void Initialize()
         {
+
+
             // TODO: Add your initialization logic here
-            paddle = new PaddleSprite(this);
-            Components.Add(paddle);
-            ball = new BallSprite(this, paddle);
+            
+
+            ball = new BallSprite(this);
             Components.Add(ball);
+
+            paddle = new PaddleSprite(this, ball);
+            Components.Add(paddle);
+
+            score = new ScoreSprite(this, ball, paddle);
+            Components.Add(score);
             base.Initialize();
+            ball.Ball.GameOver += gameEnded;
         }
 
         /// <summary>
