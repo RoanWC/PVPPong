@@ -18,7 +18,8 @@ namespace PongLibrary
         public Rectangle boundingBall;
 
         public delegate void Handler();
-      
+        
+
         public event Handler GameOver;
         public event scoreIncreaseHandler WallCollision;
 
@@ -37,6 +38,7 @@ namespace PongLibrary
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             boundingBall = new Rectangle(screenWidth / 2 - ballWidth / 2, 0, ballWidth, ballWidth);
+          
         }
 
  
@@ -57,35 +59,18 @@ namespace PongLibrary
         /// </summary>
         public void paddleBounce()
         {
-            ySpeed = -ySpeed;
+            speed.X = -speed.X;
         }
 
         /// <summary>
-        /// responsible for th eballs movement
+        /// responsible for the balls movement
         /// </summary>
         public void moveBall()
         {
-            if (boundingBall.X > 0 && boundingBall.X + boundingBall.Width < screenWidth)
-                boundingBall.X += xSpeed;
-            else
-            {
-                OnWallCollision(50);
-                xSpeed = -xSpeed;
-                boundingBall.X += xSpeed;
-            }
+            boundingBall.X += (int)speed.X;
+            boundingBall.Y += (int)speed.Y;
 
-            if (!(boundingBall.Y + ySpeed > 0))
-            {
-                OnWallCollision(50);
-                ySpeed = -ySpeed;
-            }
-            boundingBall.Y += ySpeed;
-            if (boundingBall.Y + boundingBall.Height > screenHeight)
-            {
-                ySpeed = 0;
-                xSpeed = 0;
-                OnGameOver();
-            }
+            MathHelper.Clamp(boundingBall.X, 0, screenWidth);
         }
 
 
