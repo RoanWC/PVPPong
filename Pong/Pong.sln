@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PongLibrary", "PongLibrary\PongLibrary.csproj", "{688FFCF4-6479-479C-8F82-2E2E5B8C4FB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PongTests", "PongTests\PongTests.csproj", "{6AD4715C-1675-4FA2-884F-F5609A45FDE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PongGame", "PongGame\PongGame.csproj", "{7D5BB67C-0066-4C0A-9086-64307525760E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{688FFCF4-6479-479C-8F82-2E2E5B8C4FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{688FFCF4-6479-479C-8F82-2E2E5B8C4FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{688FFCF4-6479-479C-8F82-2E2E5B8C4FB9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{688FFCF4-6479-479C-8F82-2E2E5B8C4FB9}.Debug|x86.Build.0 = Debug|Any CPU
+		{688FFCF4-6479-479C-8F82-2E2E5B8C4FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{688FFCF4-6479-479C-8F82-2E2E5B8C4FB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{688FFCF4-6479-479C-8F82-2E2E5B8C4FB9}.Release|x86.ActiveCfg = Release|Any CPU
+		{688FFCF4-6479-479C-8F82-2E2E5B8C4FB9}.Release|x86.Build.0 = Release|Any CPU
+		{6AD4715C-1675-4FA2-884F-F5609A45FDE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD4715C-1675-4FA2-884F-F5609A45FDE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD4715C-1675-4FA2-884F-F5609A45FDE2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6AD4715C-1675-4FA2-884F-F5609A45FDE2}.Debug|x86.Build.0 = Debug|Any CPU
+		{6AD4715C-1675-4FA2-884F-F5609A45FDE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD4715C-1675-4FA2-884F-F5609A45FDE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AD4715C-1675-4FA2-884F-F5609A45FDE2}.Release|x86.ActiveCfg = Release|Any CPU
+		{6AD4715C-1675-4FA2-884F-F5609A45FDE2}.Release|x86.Build.0 = Release|Any CPU
+		{7D5BB67C-0066-4C0A-9086-64307525760E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7D5BB67C-0066-4C0A-9086-64307525760E}.Debug|Any CPU.Build.0 = Debug|x86
+		{7D5BB67C-0066-4C0A-9086-64307525760E}.Debug|x86.ActiveCfg = Debug|x86
+		{7D5BB67C-0066-4C0A-9086-64307525760E}.Debug|x86.Build.0 = Debug|x86
+		{7D5BB67C-0066-4C0A-9086-64307525760E}.Release|Any CPU.ActiveCfg = Release|x86
+		{7D5BB67C-0066-4C0A-9086-64307525760E}.Release|x86.ActiveCfg = Release|x86
+		{7D5BB67C-0066-4C0A-9086-64307525760E}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
