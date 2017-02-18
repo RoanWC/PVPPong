@@ -8,19 +8,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace PongGame
 {
+    
     class ScoreSprite : DrawableGameComponent
     {
-        private int score;
+        private int player1Score;
+        private int player2Score;
         private SpriteFont font;
         private BallSprite ball;
         private PaddleSprite paddle;
+        private CPUPaddleSprite cpuPaddle;
         private Game1 game;
         private SpriteBatch spriteBatch;
 
         
 
 
-        public ScoreSprite(Game1 game,BallSprite ball,PaddleSprite paddle) : base(game)
+        public ScoreSprite(Game1 game,BallSprite ball,PaddleSprite paddle,CPUPaddleSprite cpuPaddle) : base(game)
         {
             this.game = game;
             this.ball = ball;
@@ -31,7 +34,9 @@ namespace PongGame
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, "Your score is: " + score, new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(font,"player1: " + player1Score, new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(font,"player2: " + player2Score, new Vector2(700,0), Color.White);
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -46,9 +51,9 @@ namespace PongGame
            
             
         }
-        private void updateScore(int points)
+        private void updateScore()
         {
-            score += points;
+            player1Score += 1;
         }
 
     }

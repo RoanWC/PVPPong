@@ -11,7 +11,7 @@ namespace PongGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private PaddleSprite paddle;
+        private CPUPaddleSprite paddle;
         private BallSprite ball;
         private ScoreSprite score;
         private PaddleSprite paddle2;
@@ -43,13 +43,13 @@ namespace PongGame
             ball = new BallSprite(this);
             Components.Add(ball);
 
-            paddle = new PaddleSprite(this, ball,true,true);
+            paddle = new CPUPaddleSprite(this, ball,true);
             Components.Add(paddle);
 
             paddle2 = new PaddleSprite(this, ball,false,false);
             Components.Add(paddle2);
 
-            score = new ScoreSprite(this, ball, paddle);
+            score = new ScoreSprite(this, ball, paddle2,paddle);
             Components.Add(score);
             base.Initialize();
             

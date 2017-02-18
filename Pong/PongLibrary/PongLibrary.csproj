@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
+    <Compile Include="CPUPaddle.cs" />
     <Compile Include="Paddle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
