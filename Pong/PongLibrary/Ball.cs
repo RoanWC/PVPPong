@@ -7,26 +7,35 @@ using System.Threading.Tasks;
 
 namespace PongLibrary
 {
-    public delegate void scoreIncreaseHandler(int score);
-    
+
+
+
     public class Ball
     {
-
+        //variable declarations
         private Vector2 speed;
         private int screenWidth;
         private int screenHeight;
         public Rectangle boundingBall;
+        //Properties
+        public Vector2 Speed
+        {
+            get;
+            set;
+        }
+        //events
+        public event scoreIncreaseHandler gameOverLeft;
+        public event scoreIncreaseHandler gameOverRight;
 
-        public delegate void Handler();
+
         
 
-        public event Handler GameOver;
-        public event scoreIncreaseHandler WallCollision;
+        
 
-
+        
 
         /// <summary>
-        /// 
+        /// constructor
         /// </summary>
         /// <param name="speed">vector containing an x and a y variable to determine the balls speed and direction</param>
         /// <param name="screenWidth">the width of the screen that the ball is bouncing around in</param>
@@ -37,41 +46,50 @@ namespace PongLibrary
             this.speed = speed;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
-            boundingBall = new Rectangle(screenWidth / 2 - ballWidth / 2, 0, ballWidth, ballWidth);
-          
+            boundingBall = new Rectangle(screenWidth / 2 - ballWidth / 2, 0, ballWidth, ballWidth);         
         }
 
- 
-
-
-        /// <summary>
-        /// responsoble for raising the game over event
-        /// </summary>
-        protected virtual void OnGameOver()
+        public Ball(Vector2 speed, int screenW, int screenH, int ballWidth, Point position)
         {
-            GameOver?.Invoke();
+            this.speed = speed;
+            this.screenWidth = screenW;
+            this.screenHeight = screenH;
+            boundingBall = new Rectangle(position, new Point(ballWidth));
         }
-
         
-
+        
+        
         /// <summary>
-        /// responsoble for making the ball bounce off the the paddle
+        /// add to the bounce event delegate
         /// </summary>
         public void paddleBounce()
         {
             speed.X = -speed.X;
         }
-
         /// <summary>
         /// responsible for the balls movement
         /// </summary>
         public void moveBall()
         {
-            boundingBall.X += (int)speed.X;
-            boundingBall.Y += (int)speed.Y;
-
-            MathHelper.Clamp(boundingBall.X, 0, screenWidth);
+            boundingBall.X = MathHelper.Clamp(boundingBall.X += (int)speed.X, 0, screenWidth - boundingBall.Width);
+            boundingBall.Y = MathHelper.Clamp(boundingBall.Y += (int)speed.Y, 0, screenHeight - boundingBall.Height);
+            if (boundingBall.X == 0)
+            { 
+                speed.X = -speed.X;
+                //boundingBall.X = MathHelper.Clamp(boundingBall.X += (int)speed.X, 0, screenWidth - boundingBall.Width);
+            }
+            if (boundingBall.X == screenWidth - boundingBall.Width)
+            {
+                speed.X = -speed.X;
+                //boundingBall.X = MathHelper.Clamp(boundingBall.X += (int)speed.X, 0, screenWidth - boundingBall.Width);
+            }
+            if (boundingBall.Y == 0 || boundingBall.Y == screenHeight - boundingBall.Width)
+            {
+                //boundingBall.Y = MathHelper.Clamp(boundingBall.Y += (int)speed.Y, 0, screenHeight - boundingBall.Height);
+                speed.Y = -speed.Y;
+            }
         }
+
 
 
 

@@ -54,7 +54,7 @@ namespace PongGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             imageBall = game.Content.Load<Texture2D>("ball");
-            ball = new Ball(threshold, threshold, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, imageBall.Width);
+            ball = new Ball(new Vector2(threshold), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, imageBall.Width);
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)

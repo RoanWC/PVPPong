@@ -14,6 +14,7 @@ namespace PongGame
         private PaddleSprite paddle;
         private BallSprite ball;
         private ScoreSprite score;
+        private PaddleSprite paddle2;
 
         public Game1()
         {
@@ -42,13 +43,16 @@ namespace PongGame
             ball = new BallSprite(this);
             Components.Add(ball);
 
-            paddle = new PaddleSprite(this, ball);
+            paddle = new PaddleSprite(this, ball,true,true);
             Components.Add(paddle);
+
+            paddle2 = new PaddleSprite(this, ball,false,false);
+            Components.Add(paddle2);
 
             score = new ScoreSprite(this, ball, paddle);
             Components.Add(score);
             base.Initialize();
-            ball.Ball.GameOver += gameEnded;
+            
         }
 
         /// <summary>

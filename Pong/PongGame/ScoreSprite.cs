@@ -43,8 +43,8 @@ namespace PongGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = game.Content.Load<SpriteFont>("scoreFont");
             base.LoadContent();
-            ball.Ball.WallCollision += updateScore;
-            paddle.Paddle.scoreIncrease += updateScore;
+           
+            
         }
         private void updateScore(int points)
         {
