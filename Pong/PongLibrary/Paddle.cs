@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-
+/// <summary>
+/// 
+/// </summary>
 namespace PongLibrary
 {
     public delegate void scoreIncreaseHandler(Paddle p);
